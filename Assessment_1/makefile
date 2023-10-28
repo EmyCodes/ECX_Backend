@@ -3,5 +3,5 @@ setup:
     pip install Flask
     pip install flask-sqlalchemy
 run:
-    ./server.py
-    python server.py
+    ./run.py
+    python run.py
