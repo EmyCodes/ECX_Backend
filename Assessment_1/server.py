@@ -8,7 +8,10 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Database configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecx_backend.db'
+# Database name = ecx_backend.db
+# Database path = sqlite:///ecx_backend.db
+
 db = SQLAlchemy(app)
 
 
