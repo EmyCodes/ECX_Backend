@@ -11,5 +11,13 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
 
+
+class Book(db.Model):
+    """Book model"""
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), nullable=False)
+    author = db.Column(db.Text, nullable=False)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
