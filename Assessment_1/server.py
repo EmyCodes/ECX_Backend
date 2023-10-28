@@ -12,12 +12,12 @@ from database_info import username, password, database_name
 app = Flask(__name__)
 
 # Database configuration
-my_sql_server = f'mysql+pymysql://{username}:{password}@localhost/{database_name}'
-app.config['SQLALCHEMY_DATABASE_URI'] = my_sql_server
+# my_sql_server = f'mysql+pymysql://{username}:{password}@localhost/{database_name}'
+# app.config['SQLALCHEMY_DATABASE_URI'] = my_sql_server
 
 db = SQLAlchemy(app)
 
-engine = create_engine("mysql+pymysql://user:pw@host/db", pool_pre_ping=True)
+engine = create_engine(f"mysql+pymysql://{username}:{password}@localhost/{database_name}", pool_pre_ping=True)
 Base = declarative_base()
 
 
