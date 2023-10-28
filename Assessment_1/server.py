@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 class Book(db.Model):
     """Book model"""
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(80), nullable=False)
+    title = db.Column(db.String(90), nullable=False)
     author = db.Column(db.Text, nullable=False)
 
 # Create the database
