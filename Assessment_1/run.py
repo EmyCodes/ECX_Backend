@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 '''Database initialization script'''
 
-from server import app, db  # Import app and db from server.py
+# Import app and db from server.py
+from server import app, db
 
 # Create the Flask app context
 app.app_context().push()
