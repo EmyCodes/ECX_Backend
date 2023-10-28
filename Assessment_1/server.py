@@ -27,7 +27,7 @@ class Book(db.Model):
 
 # Create the database
 @app.route('/books', methods=['GET', 'POST'])
-def manage_books():
+def get_books():
     """Handles GET and POST requests"""
     if request.method == "GET":
         books = Book.query.all()
