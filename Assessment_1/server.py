@@ -12,8 +12,9 @@ from database_info import username, password, database_name
 app = Flask(__name__)
 
 # Database configuration
-# my_sql_server = f'mysql+pymysql://{username}:{password}@localhost/{database_name}'
-# app.config['SQLALCHEMY_DATABASE_URI'] = my_sql_server
+my_sql_server = f'mysql+pymysql://{username}:{password}@localhost/{database_name}'
+app.config['SQLALCHEMY_DATABASE_URI'] = my_sql_server
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
