@@ -1,10 +1,6 @@
-#!/usr/bin/python3
-"""A Web server (program) that performs
-simple crud operations on a database"""
-
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import create_engine, Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 # from typing import Type
 from database_info import username, password, database_name
@@ -12,22 +8,17 @@ from database_info import username, password, database_name
 app = Flask(__name__)
 
 # Database configuration
-my_sql_server = f'mysql+pymysql://{username}:{password}@localhost/{database_name}'
-app.config['SQLALCHEMY_DATABASE_URI'] = my_sql_server
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{username}:{password}@localhost/{database_name}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# engine = create_engine(f"mysql+pymysql://{username}:{password}@localhost/{database_name}", pool_pre_ping=True)
-Base = declarative_base()
-
-
 class Book(db.Model):
-    """Book model"""
     __tablename__ = 'books'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(90), nullable=False)
     author = db.Column(db.Text, nullable=False)
+
 
 
 # Create the database
