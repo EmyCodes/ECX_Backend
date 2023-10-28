@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 """A Web server (program) that performs
 simple crud operations on a database"""
 
