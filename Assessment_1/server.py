@@ -18,6 +18,20 @@ class Book(db.Model):
     title = db.Column(db.String(80), nullable=False)
     author = db.Column(db.Text, nullable=False)
 
+# Create the database
+@app.route('/books', methods=['GET', 'POST'])
+def manage_books():
+    """Handles GET and POST requests"""
+    if request.method == "GET":
+        books = Book.query.all()
+        books = [{"id": book.id, "title": book.title, "author": book.author} for book in books]
+        return jsonify(books)
+
+    if request.method == "POST":
+        book = Book(title=request.json["title"], author=request.json['author'])
+        db.session.add(book)
+        db.session.commit()
+        return jsonify({"message": "Book successfully added!! "})
 
 if __name__ == '__main__':
     app.run(debug=True)
