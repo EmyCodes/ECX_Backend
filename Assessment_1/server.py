@@ -4,7 +4,7 @@ simple crud operations on a database"""
 
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import create_engine, Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from typing import Type
 from database_info import username, password, database_name
@@ -17,6 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = my_sql_server
 
 db = SQLAlchemy(app)
 
+engine = create_engine("mysql+pymysql://user:pw@host/db", pool_pre_ping=True)
 Base = declarative_base()
 
 
