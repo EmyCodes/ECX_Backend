@@ -4,13 +4,12 @@ simple crud operations on a database"""
 
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from database_info import username, password, database_name
 
 app = Flask(__name__)
 
 # Database configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecx_backend.db'
-# Database name = ecx_backend.db
-# Database path = sqlite:///ecx_backend.db
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://{username}:{password}@localhost/{database_name}'
 
 db = SQLAlchemy(app)
 
