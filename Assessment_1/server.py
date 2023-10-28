@@ -6,6 +6,7 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
+from typing import Type
 from database_info import username, password, database_name
 
 app = Flask(__name__)
