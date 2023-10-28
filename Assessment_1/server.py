@@ -4,6 +4,8 @@ simple crud operations on a database"""
 
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy.ext.declarative import declarative_base
 from database_info import username, password, database_name
 
 app = Flask(__name__)
@@ -13,7 +15,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://{username}:{password}@localhos
 
 db = SQLAlchemy(app)
 
+Base = declarative_base()
 
+# Create the Book model
 class Book(db.Model):
     """Book model"""
     id = db.Column(db.Integer, primary_key=True)
