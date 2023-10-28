@@ -35,6 +35,24 @@ def manage_books():
         db.session.add(book)
         db.session.commit()
         return jsonify({"message": "Book successfully added!! "})
+    
+@app.route('/books/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def manage_book(id):
+    book = Book.query.get(id)
+    if not book:
+        return jsonify({'message': 'Book not found'}), 404
+    if request.method == 'GET':
+        return jsonify({'id': book.id, 'title': book.title, 'author': book.author})
+    elif request.method == "PUT":
+        data = request.get_json()
+        book.title = data["title"]
+        book.author = data["author"]
+        db.session.commit()
+        return jsonify({"message": "Book successfully updated!"})
+    elif request.method == 'DELETE':
+        db.session.delete(book)
+        db.session.commit()
+        return jsonify({'message': "Book successfully deleted! "})
 
 if __name__ == '__main__':
     app.run(debug=True)
