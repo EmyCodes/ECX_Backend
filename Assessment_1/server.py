@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+"""A simple CRUD API using Flask and SQLAlchemy"""
+
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, Column, Integer, String, Text
@@ -8,17 +11,18 @@ from database_info import username, password, database_name
 app = Flask(__name__)
 
 # Database configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{username}:{password}@localhost/{database_name}"
+access_db = f'mysql+pymysql://{username}:{password}@localhost/{database_name}'
+app.config['SQLALCHEMY_DATABASE_URI'] = access_db
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
 
 class Book(db.Model):
     __tablename__ = 'books'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(90), nullable=False)
     author = db.Column(db.Text, nullable=False)
-
 
 
 # Create the database
