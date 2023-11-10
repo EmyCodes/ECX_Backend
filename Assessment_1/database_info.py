@@ -1,4 +1,4 @@
 #!/usr/bin/python3
-username = 'root'
-password = 'mypassword'
+username = 'username'
+password = 'password'
 database_name = 'ecx_backend'
